@@ -20,7 +20,7 @@ export const useQuestionsStore = create<State>()(
         currentQuestion: 0,
 
         fetchQuestions: async (limit: number) => {
-          const res = await fetch("http://localhost:4000/data.json");
+          const res = await fetch("../../public/data.json");
           const json = await res.json();
 
           const questions = json
@@ -33,7 +33,7 @@ export const useQuestionsStore = create<State>()(
           const state = get();
           const newQuestions = structuredClone(state.questions);
           const questionIndex = newQuestions.findIndex(
-            (q) => q.id === questionId
+            (q: Question) => q.id === questionId
           );
           const questionInfo = newQuestions[questionIndex];
           const isCorrectUserAnswer =
